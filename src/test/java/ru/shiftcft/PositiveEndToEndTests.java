@@ -6,7 +6,7 @@ import ru.shiftcft.app.filter.ContentsFilter;
 import ru.shiftcft.app.console.ConsoleCommand;
 import ru.shiftcft.app.console.ConsoleCommand.Builder;
 
-import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.SIMPLE;
+import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.SHORT;
 
 class PositiveEndToEndTests {
 
@@ -15,7 +15,7 @@ class PositiveEndToEndTests {
     void filteringCorrectDataFromFile() {
         ConsoleCommand consoleCommand = new Builder()
                 .addData(true)
-                .statistic(SIMPLE)
+                .statistic(SHORT)
                 .resultPath("/some/path")
                 .prefix("result_")
                 .build();

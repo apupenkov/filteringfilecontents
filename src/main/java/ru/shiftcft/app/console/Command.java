@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.FULL;
-import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.SIMPLE;
+import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.SHORT;
 
 public enum Command {
 
@@ -12,30 +12,27 @@ public enum Command {
         boolean parameterExist() {
             return false;
         }
+        boolean paramIsCorrect(String param) { return true; }
         void addCommand(String commandParameters) {
             commandBuilder.addData(true);
         }
     },
     S("-s") {
-        boolean parameterExist() {
-            return false;
-        }
+        boolean parameterExist() { return false; }
+        boolean paramIsCorrect(String param) { return true; }
         void addCommand(String commandParameters){
-            commandBuilder.statistic(SIMPLE);
+            commandBuilder.statistic(SHORT);
         }
     },
     F("-f") {
-        boolean parameterExist() {
-            return false;
-        }
+        boolean parameterExist() { return false; }
+        boolean paramIsCorrect(String param) { return true; }
         void addCommand(String commandParameters){
             commandBuilder.statistic(FULL);
         }
     },
     O("-o") {
-        boolean parameterExist() {
-            return true;
-        }
+        boolean parameterExist() { return true; }
         boolean paramIsCorrect(String param) {
             if(Pattern.matches("^([/\\\\][^<>:\\\\;@!«/|\\[,\\]?*=#%&+ ]+)+$", param)) {
                 return true;
@@ -52,9 +49,7 @@ public enum Command {
         }
     },
     P("-p") {
-        boolean parameterExist() {
-            return true;
-        }
+        boolean parameterExist() { return true; }
         boolean paramIsCorrect(String param) {
             if(Pattern.matches("^[^<>:;@!«/|\\[,\\].?*=#%&+ ]+_{1}$", param)) {
                 return true;
@@ -71,9 +66,7 @@ public enum Command {
         }
     },
     DEFAULT("file") {
-        boolean parameterExist() {
-            return false;
-        }
+        boolean parameterExist() { return false; }
         boolean paramIsCorrect(String param) {
             if(Pattern.matches("^[^<>:;@!«/|\\[.,\\]?*=#%&+ ]+\\.txt$", param)){
                 return true;
@@ -102,15 +95,11 @@ public enum Command {
         return name;
     }
 
-    boolean parameterExist() {
-        return false;
-    }
+    abstract boolean parameterExist();
 
-    boolean paramIsCorrect(String param) {
-        return false;
-    }
+    abstract boolean paramIsCorrect(String param);
 
-    void addCommand(String commandParameters){}
+    abstract void addCommand(String commandParameters);
 
     public static ConsoleCommand getCommands() {
         return commandBuilder.build();

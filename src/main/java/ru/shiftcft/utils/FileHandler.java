@@ -37,11 +37,10 @@ public class FileHandler {
         }
     }
 
-    public File mkDir(String path) {
+    public void mkDir(String path) {
         File dir = new File(path);
         if (!dir.exists()){
             dir.mkdirs();
         }
-        return dir;
     }
 }
