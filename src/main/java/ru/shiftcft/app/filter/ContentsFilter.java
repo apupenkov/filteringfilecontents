@@ -1,8 +1,10 @@
-package ru.shiftcft.app;
+package ru.shiftcft.app.filter;
 
 import ru.shiftcft.data.Basket;
-import ru.shiftcft.utils.ConsoleCommand;
+import ru.shiftcft.app.console.ConsoleCommand;
 import ru.shiftcft.utils.FileHandler;
+
+import java.io.File;
 
 public class ContentsFilter {
 
@@ -15,7 +17,8 @@ public class ContentsFilter {
 
     public void execute() {
         Basket basket = fileHandler.readInputFiles(consoleCommand.getInputFilePaths());
-        String filePathPart = consoleCommand.getResultPath() + "/" + consoleCommand.getPrefix();
+        String filePathPart = consoleCommand.getResultPath() + File.separator + consoleCommand.getPrefix();
+        fileHandler.mkDir(consoleCommand.getResultPath());
         fileHandler.writeDataToFile(filePathPart + "integers.txt", basket.getInts(), consoleCommand.appendData());
         fileHandler.writeDataToFile(filePathPart + "floats.txt", basket.getFloats(), consoleCommand.appendData());
         fileHandler.writeDataToFile(filePathPart + "strings.txt", basket.getStrings(), consoleCommand.appendData());

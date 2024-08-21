@@ -2,11 +2,11 @@ package ru.shiftcft;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.shiftcft.app.ContentsFilter;
-import ru.shiftcft.utils.ConsoleCommand;
-import ru.shiftcft.utils.ConsoleCommand.Builder;
+import ru.shiftcft.app.filter.ContentsFilter;
+import ru.shiftcft.app.console.ConsoleCommand;
+import ru.shiftcft.app.console.ConsoleCommand.Builder;
 
-import static ru.shiftcft.utils.ConsoleCommand.StatisticType.SIMPLE;
+import static ru.shiftcft.app.console.ConsoleCommand.StatisticType.SIMPLE;
 
 class PositiveEndToEndTests {
 
