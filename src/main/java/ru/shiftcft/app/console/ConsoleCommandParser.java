@@ -6,7 +6,7 @@ public class ConsoleCommandParser {
         for (int i = 0; i < args.length; i++) {
             Command command = command(args[i]);
             if(command != null) {
-                if (command.parameterExist() && ((i + 1 < args.length))) {
+                if (command.parameterExist() && ((i + 1) < args.length)) {
                     if(command.paramIsCorrect(args[i+1])) {
                         command.addCommand(args[++i]);
                     }

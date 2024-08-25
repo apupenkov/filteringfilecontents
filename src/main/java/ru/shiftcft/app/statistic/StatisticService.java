@@ -2,8 +2,9 @@ package ru.shiftcft.app.statistic;
 
 import ru.shiftcft.data.Basket;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Comparator;
-import java.util.Objects;
 
 public class StatisticService {
 
@@ -13,43 +14,57 @@ public class StatisticService {
         this.basket = basket;
     }
 
-    int getIntSize() {
+    public int getIntSize() {
         return basket.getInts().size();
     }
 
-    int getFloatSize() {
-        return basket.getFloats().size();
+    public int getFloatSize() {
+        return basket.getDoubles().size();
     }
 
-    int getStringSize() {
+    public int getStringSize() {
         return basket.getStrings().size();
     }
 
-    int getMaxIntValue() {
-        return basket.getInts().stream().map(a -> Integer.parseInt(a.replace("\n", "")))
-                .max(Comparator.comparingInt(a -> a)).orElse(0);
+    public BigInteger getMaxIntValue() {
+        return basket.getInts().stream().max(BigInteger::compareTo).orElse(BigInteger.ZERO);
     }
 
-    int getMinIntValue() {
-        return basket.getInts().stream().map(a -> Integer.parseInt(a.replace("\n", "")))
-                .min(Comparator.comparingInt(a -> a)).orElse(0);
+    public BigInteger getMinIntValue() {
+        return basket.getInts().stream()
+                .min(BigInteger::compareTo).orElse(BigInteger.ZERO);
     }
 
-    int getAverageIntValue() {
-        return getSumIntValue() / basket.getInts().size();
+    public BigInteger getAvgIntValue() {
+        return getSumIntValue().divide(BigInteger.valueOf(basket.getInts().size()));
+    }
+    public BigInteger getSumIntValue() {
+        return basket.getInts().stream().reduce(BigInteger.ZERO, BigInteger::add);
     }
 
-    int getSumIntValue() {
-        return basket.getInts().stream().map(a -> Integer.parseInt(a.replace("\n", ""))).reduce(0, Integer::sum);
+    public BigDecimal getSumDoubleValue() {
+        return basket.getDoubles().stream().reduce(BigDecimal.valueOf(0.0), BigDecimal::add);
     }
 
-    String getMinString() {
+    public BigDecimal getMaxDoubleValue() {
+        return basket.getDoubles().stream().max(BigDecimal::compareTo).orElse(BigDecimal.ZERO);
+    }
+
+    public BigDecimal getMinDoubleValue() {
+        return basket.getDoubles().stream().min(BigDecimal::compareTo).orElse(BigDecimal.ZERO);
+    }
+
+    public BigDecimal getAvgDoubleValue() {
+        return getSumDoubleValue().divide(BigDecimal.valueOf(basket.getDoubles().size()));
+    }
+
+    public String getMinString() {
         return basket.getStrings().stream().min(Comparator.comparingInt(String::length))
-                .orElse("").replace("\n", "");
+                .orElse("");
     }
 
-    String getMaxString() {
+    public String getMaxString() {
         return basket.getStrings().stream().max(Comparator.comparingInt(String::length))
-                .orElse("").replace("\n", "");
+                .orElse("");
     }
 }

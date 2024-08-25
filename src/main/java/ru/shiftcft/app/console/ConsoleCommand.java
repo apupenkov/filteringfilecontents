@@ -72,13 +72,6 @@ public class ConsoleCommand {
     }
 
     public enum StatisticType {
-        FULL("-f"), SHORT("-s");
-        private final String command;
-        StatisticType(String command) {
-            this.command = command;
-        }
-        public String getCommand() {
-            return command;
-        }
+        FULL, SHORT;
     }
 }

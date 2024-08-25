@@ -1,5 +1,8 @@
 package ru.shiftcft.app.console;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.util.regex.Pattern;
 
@@ -37,9 +40,10 @@ public enum Command {
             if(Pattern.matches("^([/\\\\][^<>:\\\\;@!«/|\\[,\\]?*=#%&+ ]+)+$", param)) {
                 return true;
             }
-            System.out.println("Путь к папке результата указан некорректно.\n" +
-                        "Убедитесь, что в нем отсутствуют симводы <>:;@!« /|[,]?*=#%&+\n" +
-                        "Текущие результаты будут сохранены в папке " + rootPath);
+            logger.error("Путь к папке результата указан некорректно. Убедитесь, " +
+                        "что после флага \"-o\" указан путь к файлу " +
+                        "и в нем отсутствуют симводы <>:;@!« /|[,]?*=#%&+\n" +
+                        "Текущие результаты будут сохранены в папке " + "\"" + rootPath + "\"");
             return false;
         }
         void addCommand(String commandParameters){
@@ -54,8 +58,9 @@ public enum Command {
             if(Pattern.matches("^[^<>:;@!«/|\\[,\\].?*=#%&+ ]+_{1}$", param)) {
                 return true;
             }
-            System.out.println("Префикс файла результата указан некорректно\n" +
-                    "Убедитесь, что в нем отсутствуют симводы <>:;@!«/| [,]?*=#%&+\n" +
+            logger.error("Префикс файла результата указан некорректно. Убедитесь, " +
+                    "что после флага \"-p\" указан префикс файла;" +
+                    "и в нем отсутствуют симводы <>:;@!«/| [,]?*=#%&+\n" +
                     "Файл результата будет назван по умолчанию");
             return false;
         }
@@ -65,13 +70,13 @@ public enum Command {
             commandBuilder.prefix(prefix);
         }
     },
-    DEFAULT("file") {
+    DEFAULT("default") {
         boolean parameterExist() { return false; }
         boolean paramIsCorrect(String param) {
             if(Pattern.matches("^[^<>:;@!«/|\\[.,\\]?*=#%&+ ]+\\.txt$", param)){
                 return true;
             }
-            System.out.println("Путь к исходному файлу указан некорректно");
+            logger.error("Путь к исходному файлу указан некорректно");
             return false;
         }
         void addCommand(String fileName){
@@ -82,6 +87,7 @@ public enum Command {
     private final String name;
     private static final ConsoleCommand.Builder commandBuilder = new ConsoleCommand.Builder();
     private static final String rootPath = System.getProperty("user.dir");
+    private static final Logger logger = LogManager.getLogger(Command.class);
 
     static {
         commandBuilder.addData(false).resultPath(rootPath);
