@@ -8,7 +8,7 @@ public class BasketSorter {
 
     public void putLineToBasket(String line, Basket basket) {
         if(line != null && basket != null) {
-            if (Pattern.matches("^\\d+$", line)) {
+            if (Pattern.matches("^[+-]?\\d+$", line)) {
                 basket.addInt(new BigInteger(line));
                 return;
             }
