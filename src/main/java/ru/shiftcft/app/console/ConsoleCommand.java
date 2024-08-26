@@ -25,7 +25,7 @@ public class ConsoleCommand {
     }
 
     public String getPrefix() {
-        return prefix;
+        return prefix != null ? prefix : "";
     }
 
     public boolean appendData() {

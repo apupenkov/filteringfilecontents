@@ -24,21 +24,25 @@ public class StatisticViewer {
                 break;
                 case FULL: {
                     shortDisplay();
-                    logger.info("- наименьшее целое число: " + statisticService.getMinIntValue());
-                    logger.info("- наибольшее целое число: " + statisticService.getMaxIntValue());
-                    logger.info("- сумма целых чисел: " + statisticService.getSumIntValue());
-                    logger.info("- среднее значение целых чисел: " + statisticService.getAvgIntValue());
-                    logger.info("- строка с максимальной длиной: " + "\"" + statisticService.getMaxString() + "\"");
-                    logger.info("- строка с минимальной длиной: " + "\"" + statisticService.getMinString() + "\"");
+                    logger.info("- min number:        {}", statisticService.getMinIntValue());
+                    logger.info("- max number:        {}", statisticService.getMaxIntValue());
+                    logger.info("- number sum:        {}", statisticService.getSumIntValue());
+                    logger.info("- average number:    {}", statisticService.getAvgIntValue());
+                    logger.info("- min decimal:       {}", statisticService.getMinDoubleValue());
+                    logger.info("- max decimal:       {}", statisticService.getMaxDoubleValue());
+                    logger.info("- decimal sum:       {}", statisticService.getSumDoubleValue());
+                    logger.info("- average decimal:   {}", statisticService.getAvgDoubleValue());
+                    logger.info("- max string length: {}", "\"" + statisticService.getMaxString() + "\"");
+                    logger.info("- min string length: {}", "\"" + statisticService.getMinString() + "\"");
                 }
             }
         }
     }
 
     private void shortDisplay() {
-        logger.info("В процессе фильтрации найдено:");
-        logger.info("- целых чисел: " + statisticService.getIntSize());
-        logger.info("- вещественных чисел: "+ statisticService.getFloatSize());
-        logger.info("- строк: "+ statisticService.getStringSize());
+        logger.info("Found in the process of filtering:");
+        logger.info("- numbers count:     {}", statisticService.getIntSize());
+        logger.info("- decimals count:    {}", statisticService.getFloatSize());
+        logger.info("- strings count:     {}", statisticService.getStringSize());
     }
 }

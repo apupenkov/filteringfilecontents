@@ -8,7 +8,6 @@ import ru.shiftcft.data.BasketSorter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.*;
 
 public class FileHandler {
 
@@ -24,8 +23,8 @@ public class FileHandler {
                     basketSorter.putLineToBasket(line, basket);
                 }
             } catch (IOException e) {
-                logger.error("Не удалось прочитать файл " + inputFilePath +
-                        "\nПроверьте путь и название файла и повторите попытку");
+                logger.error("Failed to read file {}", inputFilePath +
+                        "\nCheck the path and file name and try again");
             }
         }
         return basket;
@@ -38,7 +37,7 @@ public class FileHandler {
                     bw.write(line + "\n");
                 }
             } catch (IOException e) {
-                logger.error("Не удалось записать данные в файл " + filePath);
+                logger.error("Failed to write data to file " + filePath);
             }
         }
     }
@@ -50,7 +49,7 @@ public class FileHandler {
                     bw.write(line + "\n");
                 }
             } catch (IOException e) {
-                logger.error("Не удалось записать данные в файл " + filePath);
+                logger.error("Failed to write data to file " + filePath);
             }
         }
     }

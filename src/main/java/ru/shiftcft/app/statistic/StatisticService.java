@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Comparator;
 
+import static java.math.BigInteger.ZERO;
+
 public class StatisticService {
 
     private final Basket basket;
@@ -27,19 +29,20 @@ public class StatisticService {
     }
 
     public BigInteger getMaxIntValue() {
-        return basket.getInts().stream().max(BigInteger::compareTo).orElse(BigInteger.ZERO);
+        return basket.getInts().stream().max(BigInteger::compareTo).orElse(ZERO);
     }
 
     public BigInteger getMinIntValue() {
         return basket.getInts().stream()
-                .min(BigInteger::compareTo).orElse(BigInteger.ZERO);
+                .min(BigInteger::compareTo).orElse(ZERO);
     }
 
     public BigInteger getAvgIntValue() {
-        return getSumIntValue().divide(BigInteger.valueOf(basket.getInts().size()));
+        int size = basket.getInts().size();
+        return size == 0 ? ZERO : getSumIntValue().divide(BigInteger.valueOf(size));
     }
     public BigInteger getSumIntValue() {
-        return basket.getInts().stream().reduce(BigInteger.ZERO, BigInteger::add);
+        return basket.getInts().stream().reduce(ZERO, BigInteger::add);
     }
 
     public BigDecimal getSumDoubleValue() {
@@ -55,7 +58,8 @@ public class StatisticService {
     }
 
     public BigDecimal getAvgDoubleValue() {
-        return getSumDoubleValue().divide(BigDecimal.valueOf(basket.getDoubles().size()));
+        int size = basket.getDoubles().size();
+        return size == 0 ? BigDecimal.ZERO : getSumDoubleValue().divide(BigDecimal.valueOf(size));
     }
 
     public String getMinString() {

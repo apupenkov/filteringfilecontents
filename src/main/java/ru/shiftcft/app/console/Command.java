@@ -40,10 +40,10 @@ public enum Command {
             if(Pattern.matches("^([/\\\\][^<>:\\\\;@!«/|\\[,\\]?*=#%&+ ]+)+$", param)) {
                 return true;
             }
-            logger.error("Путь к папке результата указан некорректно. Убедитесь, " +
-                        "что после флага \"-o\" указан путь к файлу " +
-                        "и в нем отсутствуют симводы <>:;@!« /|[,]?*=#%&+\n" +
-                        "Текущие результаты будут сохранены в папке " + "\"" + rootPath + "\"");
+            logger.error("The path to the result folder is specified incorrectly. Make sure that the " +
+                    "file path is specified after the \"-o\" flag " +
+                    "and that it does not contain the <>:;@!« /|[,]?*=#%&+\n" +
+                    "The current results will be saved in the folder " + "\"" + rootPath + "\"");
             return false;
         }
         void addCommand(String commandParameters){
@@ -55,13 +55,13 @@ public enum Command {
     P("-p") {
         boolean parameterExist() { return true; }
         boolean paramIsCorrect(String param) {
-            if(Pattern.matches("^[^<>:;@!«/|\\[,\\].?*=#%&+ ]+_{1}$", param)) {
+            if(Pattern.matches("^[^<>:;@!«/|\\[,\\].?*=#%&+ ]+$", param)) {
                 return true;
             }
-            logger.error("Префикс файла результата указан некорректно. Убедитесь, " +
-                    "что после флага \"-p\" указан префикс файла;" +
-                    "и в нем отсутствуют симводы <>:;@!«/| [,]?*=#%&+\n" +
-                    "Файл результата будет назван по умолчанию");
+            logger.error("The output file prefix is​specified incorrectly. Make sure that the " +
+                    "file prefix specified after the \"-p\" flag is " +
+                    "and that it does not contain the <>:;@!«/| [,]?*=#%&+\n" +
+                    "The output file will be named by default");
             return false;
         }
         void addCommand(String commandParameters){
@@ -76,7 +76,7 @@ public enum Command {
             if(Pattern.matches("^[^<>:;@!«/|\\[.,\\]?*=#%&+ ]+\\.txt$", param)){
                 return true;
             }
-            logger.error("Путь к исходному файлу указан некорректно");
+            logger.error("The path to the source file is incorrect");
             return false;
         }
         void addCommand(String fileName){
