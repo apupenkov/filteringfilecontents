@@ -39,3 +39,4 @@
 * Плагины сборки проекта:
   * [maven-assembly-plugin 3.3.0](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin/3.3.0);
   * [maven-compiler-plugin 3.8.1](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin/3.8.1).
+  
