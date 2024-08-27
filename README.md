@@ -6,7 +6,7 @@
 ### Подготовка к работе
 Перед тем как начать использовать данную утилиту, необходимо выполнить следующие шаги:
 * скачать и установить Java jre 17 или Java jdk 17;  
-* добавить пусть к java в переменные среды;
+* добавить путь к java в переменные среды;
 * скачать файл filter.jar из папки /jarfile данного репозитория и поместить в любое место на вашем ПК. 
 
 ### Запуск
@@ -14,7 +14,7 @@
 * открыть командную строку;
 * выполнить команду chcp 65001, чтобы поменять кодировку консоли на UTF-8;
 * перейти в каталог с файлом filter.jar;
-* выполнить команду java -jar filter.jar input.txt с флагами (о них подробнее ниже) или без, где input.txt - название файлка, данные которого необходимо отфильтровать.
+* выполнить команду java -jar filter.jar input.txt с флагами (о них подробнее ниже) или без, где input.txt - название файла, данные которого необходимо отфильтровать.
 
 ### Флаги
 
@@ -25,3 +25,17 @@
 | -a | Добавляет отфильтрованные данные в файлы с результатами. По умолчанию файлы результатов перезаписываются |
 | -s | Выводит статистику по количеству записей строк, целых чисел и вещественных чисел |
 | -f | Выводит: <ul><li>статистику по количеству записей строк, целых чисел и вещественных чисел;</li><li>наибольшие и наименьшие целое и вещественное числа;</li><li>суммы целых и вещественных чесел;</li><li>средние значения целых и вещественных чисел;</li><li>наибольшую и наименьшую строки</li></ul> |
+
+### Инструменты использованные в проекте
+* java jdk 17;
+* maven 3.9.9;
+* Библиотеки:
+  * [junit-jupiter-engine 5.11.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.11.0);
+  * [junit-jupiter-api 5.11.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.11.0);
+  * [junit-jupiter-params 5.11.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.11.0);
+  * [junit-platform-suite 1.11.0](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api/1.11.0);
+  * [log4j-core 2.23.1](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core/2.23.1);
+  * [log4j-api 2.23.1](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api/2.23.1).
+* Плагины сборки проекта:
+  * [maven-assembly-plugin 3.3.0](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin/3.3.0);
+  * [maven-compiler-plugin 3.8.1](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin/3.8.1).
